@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class GetConnectedComponents {
+public class Main {
    static class Edge {
       int src;
       int nbr;
@@ -33,10 +33,56 @@ public class GetConnectedComponents {
          graph[v2].add(new Edge(v2, v1, wt));
       }
 
-      ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
       
-      // write your code here
-
-      System.out.println(comps);
+      ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
+     
+      System.out.println(""+beforecall(comps,graph));
    }
+   
+   public static  ArrayList beforecall(ArrayList<ArrayList<Integer>> comps,ArrayList <Edge> graph[])
+   {
+       
+       boolean visited[]=new boolean[graph.length];
+    for(int i=0;i<graph.length;i++)    
+     {     if(visited[i]==false)
+           {
+              ArrayList<Integer> res=new ArrayList<>();
+               gcc(graph,i,visited,res);
+               comps.add(res);
+           }
+     }
+     return comps;
+   }
+   
+   public static void  gcc(ArrayList<Edge> graph[],int vtx,boolean visited[],ArrayList<Integer> res)
+   {
+       res.add(vtx);
+
+      visited[vtx]=true;
+          for(Edge e:graph[vtx])
+          {
+            if(visited[e.nbr]==false)
+              gcc(graph,e.nbr,visited,res);
+          }
+      
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }
